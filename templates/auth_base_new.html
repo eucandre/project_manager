@@ -37,8 +37,12 @@
                         <div class="row">
                             {% if request.path == '/accounts/login/'%}
                             <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                            {% else %}
+                            {% elif request.path == '/accounts/signup/' %}
                             <div class="col-lg-6 d-none d-lg-block bg-register-image"></div>
+                            {% else %}
+                            <div class="col-lg-6 d-none d-lg-block">
+                                <img src=/media/{{object.user_pic_profile}} alt="" width="500" height="600">
+                            </div>
                             {%endif%}
                             <div class="col-lg-6">
                                 <div class="p-5">

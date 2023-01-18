@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.views.generic.detail import DetailView
 
-from .forms import SignUpForm
+from .forms import SignUpForm, EditForm
+from .models import User
 
 
 class UserView(DetailView):
@@ -10,6 +11,25 @@ class UserView(DetailView):
 
     def get_object(self):
         return self.request.user
+
+
+def edit_profile(request, nr_id):
+    object_user = User.objects.get(pk=nr_id)
+    if request.method == 'POST':
+        form = EditForm(request.POST, request.FILES, instance=object_user)
+        if form.is_valid():
+            user = form.save()
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(request, email=user.email,
+                                password=raw_password)
+            if user is not None:
+                login(request, user)
+            else:
+                print("usuáiro não autenticado!")
+            return redirect('users:profile')
+    else:
+        form = EditForm(instance=object_user)
+    return render(request, 'edit_profile.html', {'form': form})
 
 
 def signup(request):
@@ -23,7 +43,7 @@ def signup(request):
             if user is not None:
                 login(request, user)
             else:
-                print("user is not authenticated")
+                print("usuáiro não autenticado!")
             return redirect('users:profile')
     else:
         form = SignUpForm()

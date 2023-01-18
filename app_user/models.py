@@ -7,7 +7,8 @@ class UserManager(BaseUserManager):
 
     def _create_user(self, email, password, is_staff, is_superuser, **extra_fields):
         if not email:
-            raise ValueError('Users must have an email address')
+            raise ValueError(
+                'Você precisa informar um endereço de email válido')
         now = timezone.now()
         email = self.normalize_email(email)
         user = self.model(
@@ -39,6 +40,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     last_login = models.DateTimeField(null=True, blank=True)
     date_joined = models.DateTimeField(auto_now_add=True)
+    user_pic_profile = models.ImageField(
+        upload_to='profiles', null=True, blank=True)
 
     USERNAME_FIELD = 'email'
     EMAIL_FIELD = 'email'

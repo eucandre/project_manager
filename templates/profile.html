@@ -1,5 +1,11 @@
-<h1>My profile</h1>
+{% extends "auth_base_new.html" %}
+{% block content %}
+
 <p>
-    {{ object }}
+    {{ object.name }}<br>
+    {{ object.email }}
+
 </p>
+
 <a href="{% url 'users:logout' %}">Logout</a>
+{% endblock content %}
