@@ -8,6 +8,7 @@ class Tarefa(models.Model):
     id_marco = models.ForeignKey(
         Marco, on_delete=models.CASCADE, blank=True, null=True)
     objetivo = models.TextField()
+    custo = models.FloatField(blank=True, null=True)
     responsavel = models.ForeignKey(User, on_delete=models.CASCADE)
     dependencias = models.CharField(max_length=255, blank=True, null=True)
     inicio = models.DateField()

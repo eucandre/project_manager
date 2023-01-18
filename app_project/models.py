@@ -1,20 +1,20 @@
 from django.db import models
 from app_user.models import User
-from app_project.models import Projeto
+from app_areas.models import Area
 
 
-class Marco(models.Model):
+class Projeto(models.Model):
     titulo = models.CharField(max_length=255)
     inicio = models.DateField()
     fim = models.DateField()
-    objetivo = models.TextField()
     custo = models.FloatField(blank=True, null=True)
-    id_projeto = models.ForeignKey(
-        Projeto, on_delete=models.CASCADE, related_name='titulos')
+    objetivo = models.TextField()
+    area = models.ForeignKey(
+        Area, on_delete=models.CASCADE, related_name='field')
     integrantes = models.ManyToManyField(
         User)
     responsavel = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='names')
+        User, on_delete=models.CASCADE, related_name='responseble')
     created_at = models.DateField(auto_now=True)
     updated_at = models.DateField(auto_now_add=True)
 
@@ -22,4 +22,4 @@ class Marco(models.Model):
         return self.titulo
 
     class Meta:
-        verbose_name_plural = 'Marco de tarefas realizadas'
+        verbose_name_plural = 'Projetos'
