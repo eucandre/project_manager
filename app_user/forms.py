@@ -11,4 +11,5 @@ class SignUpForm(UserCreationForm):
 class EditForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ('email', 'user_pic_profile', 'name')
+        fields = ('email', 'user_pic_profile',
+                  'name', 'function_in_the_project')

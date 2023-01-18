@@ -1,11 +1,12 @@
 {% extends "auth_base_new.html" %}
 {% block content %}
 
-<p>
-    {{ object.name }}<br>
-    {{ object.email }}
-
-</p>
-
-<a href="{% url 'users:logout' %}">Logout</a>
+<div class="col-12">
+    <h2> {{ object.name }}</h2>
+    <small>{{ object.email }}</small><br>
+    <small>{{object.function_in_the_project}}</small>
+</div>
+<a href="{% url 'users:logout' %}">Sair</a>
+<a href="{% url 'users:edit_profile' object.id %}">Editar</a>
+<a href="{% url 'users:logout' %}">projetos</a>
 {% endblock content %}
