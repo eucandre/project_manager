@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'app_marco',
     'app_project',
     'app_areas',
+    'app_status',
 ]
 
 AUTH_USER_MODEL = 'app_user.User'
