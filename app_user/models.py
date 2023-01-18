@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
 from django.utils import timezone
+from app_funcoes.models import Funcao
 
 
 class UserManager(BaseUserManager):
@@ -42,6 +43,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(auto_now_add=True)
     user_pic_profile = models.ImageField(
         upload_to='profiles', null=True, blank=True)
+    function_in_the_project = models.ForeignKey(
+        Funcao, on_delete=models.CASCADE, blank=True, null=True)
 
     USERNAME_FIELD = 'email'
     EMAIL_FIELD = 'email'
