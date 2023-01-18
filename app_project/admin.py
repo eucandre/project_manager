@@ -5,7 +5,7 @@ from .models import Projeto
 class ProjetoAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {'fields': ('titulo', 'inicio',
-         'fim', 'objetivo', 'area', 'integrantes', 'responsavel', 'custo')}),
+         'fim', 'objetivo', 'area', 'integrantes', 'responsavel', 'custo', 'status')}),
     )
     add_fieldsets = (
         (
@@ -17,7 +17,7 @@ class ProjetoAdmin(admin.ModelAdmin):
         ),
     )
 
-    list_display = ('titulo', 'inicio', 'fim', 'responsavel')
+    list_display = ('titulo', 'inicio', 'fim', 'responsavel', 'status')
     list_filter = ('inicio', 'fim', 'titulo')
     search_fields = ('inicio', 'fim', 'titulo')
     ordering = ('inicio',)

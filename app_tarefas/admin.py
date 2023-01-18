@@ -5,7 +5,7 @@ from .models import Tarefa
 class TarefaAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {'fields': ('titulo', 'inicio',
-         'fim', 'objetivo', 'responsavel', 'id_marco')}),
+         'fim', 'objetivo', 'responsavel', 'id_marco', 'custo', 'status')}),
     )
     add_fieldsets = (
         (
