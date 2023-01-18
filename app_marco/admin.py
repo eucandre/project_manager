@@ -1,8 +1,5 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
 from .models import Marco
-
-from django.contrib import admin
 
 
 class MarcoAdmin(admin.ModelAdmin):

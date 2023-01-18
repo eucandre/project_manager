@@ -1,8 +1,5 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
 from .models import Area
-
-from django.contrib import admin
 
 
 class AreaAdmin(admin.ModelAdmin):
