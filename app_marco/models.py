@@ -1,6 +1,7 @@
 from django.db import models
 from app_user.models import User
 from app_project.models import Projeto
+from app_status.models import Status
 
 
 class Marco(models.Model):
@@ -9,6 +10,8 @@ class Marco(models.Model):
     fim = models.DateField()
     objetivo = models.TextField()
     custo = models.FloatField(blank=True, null=True)
+    status = models.ForeignKey(
+        Status, on_delete=models.CASCADE, related_name='state_marco')
     id_projeto = models.ForeignKey(
         Projeto, on_delete=models.CASCADE, related_name='titulos')
     integrantes = models.ManyToManyField(

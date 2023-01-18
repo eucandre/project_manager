@@ -1,6 +1,7 @@
 from django.db import models
 from app_user.models import User
 from app_areas.models import Area
+from app_status.models import Status
 
 
 class Projeto(models.Model):
@@ -8,6 +9,8 @@ class Projeto(models.Model):
     inicio = models.DateField()
     fim = models.DateField()
     custo = models.FloatField(blank=True, null=True)
+    status = models.ForeignKey(
+        Status, on_delete=models.CASCADE, related_name='state_project')
     objetivo = models.TextField()
     area = models.ForeignKey(
         Area, on_delete=models.CASCADE, related_name='field')
