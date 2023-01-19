@@ -18,6 +18,7 @@ class Projeto(models.Model):
         User)
     responsavel = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='responseble')
+    attachment = models.FileField(upload_to='tarefas', blank=True, null=True)
     created_at = models.DateField(auto_now=True)
     updated_at = models.DateField(auto_now_add=True)
 

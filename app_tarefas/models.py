@@ -16,6 +16,7 @@ class Tarefa(models.Model):
     status = models.ForeignKey(Status, on_delete=models.CASCADE, related_name='state_task')
     responsavel = models.ForeignKey(User, on_delete=models.CASCADE)
     dependencias = models.CharField(max_length=255, blank=True, null=True)
+    attachment = models.FileField(upload_to='tarefas',blank=True, null=True)
     inicio = models.DateField()
     fim = models.DateField()
 
