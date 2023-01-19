@@ -1,0 +1,58 @@
+{% extends "blank.html" %}
+{% block content %}
+<h1 class="h3 mb-2 text-gray-800">Tables</h1>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <a href="/projects/new_project" class="btn btn-primary btn-icon-split btn-sm">
+            <span class="icon text-white-50">
+                <i class="fas fa-flag"></i>
+            </span>
+            <span class="text">Novo Projeto</span>
+        </a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Início</th>
+                        <th>Fim</th>
+                        <th>Custo</th>
+                        <th>Área</th>
+                        <th>Responsável</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Início</th>
+                        <th>Fim</th>
+                        <th>Custo</th>
+                        <th>Área</th>
+                        <th>Responsável</th>
+                        <th>Status</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    {% for i in projects %}
+                    <tr>
+                        <td>{{ i.titulo }}</td>
+                        <td>{{ i.inicio }}</td>
+                        <td>{{ i.fim }}</td>
+                        <td>{{ i.custo }}</td>
+                        <td>{{ i.area }}</td>
+                        <td>{{ i.responsavel }}</td>
+                        <td>{{ i.status }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock content%}
