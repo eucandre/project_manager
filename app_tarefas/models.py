@@ -3,6 +3,7 @@ from app_marco.models import Marco
 from app_project.models import Projeto
 from app_user.models import User
 from app_status.models import Status
+from django.utils import timezone
 
 
 class Tarefa(models.Model):
@@ -19,9 +20,16 @@ class Tarefa(models.Model):
     attachment = models.FileField(upload_to='tarefas',blank=True, null=True)
     inicio = models.DateField()
     fim = models.DateField()
+    created_at = models.DateField(auto_now=True)
+    updated_at = models.DateField(default=None)
 
     def __str__(self):
         return self.titulo
+    
+    def save(self, *args, **kwargs):
+        ''' On save, update timestamps '''
+        self.updated_at = timezone.now()
+        return super(User, self).save(*args, **kwargs)
        
     class Meta:
         verbose_name_plural = 'Tarefas a serem realizadas'

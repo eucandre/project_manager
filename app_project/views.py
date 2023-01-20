@@ -2,8 +2,10 @@ from django.shortcuts import render
 from .models import Projeto
 from .forms import ProjetoForms
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def index_to_equipe(request):
     projects = Projeto.objects.all()  # get(responsavel=request.user.id)
     paginator = Paginator(projects, 10)
@@ -20,6 +22,7 @@ def index_to_equipe(request):
     return render(request, 'app_projects/index.html', {'projects': contacts})
 
 
+@login_required
 def cria_projeto(request):
     if request.method == 'POST':
         form = ProjetoForms(request.POST)
