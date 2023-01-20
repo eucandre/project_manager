@@ -22,4 +22,7 @@ class AreaTest(TestCase):
         max_length = area_teste._meta.get_field('descricao').max_length
         self.assertEquals(max_length, 255)
 
-    # def teste_insert_area(self):
+    def teste_insert_area_type(self):
+        area_teste = Area.objects.get(id=1)
+        type_content = True if type(area_teste.descricao) == str else False
+        self.assertEquals(type_content, True)

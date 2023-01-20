@@ -12,8 +12,7 @@ class Projeto(models.Model):
     status = models.ForeignKey(
         Status, on_delete=models.CASCADE, related_name='state_project')
     objetivo = models.TextField()
-    area = models.ForeignKey(
-        Area, on_delete=models.CASCADE, related_name='field')
+    area = models.ManyToManyField(Area, related_name='field')
     integrantes = models.ManyToManyField(
         User)
     responsavel = models.ForeignKey(

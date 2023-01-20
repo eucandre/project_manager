@@ -5,7 +5,7 @@ from .models import Projeto
 class ProjetoAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {'fields': ('titulo', 'inicio',
-         'fim', 'objetivo', 'area', 'integrantes', 'responsavel', 'custo', 'status')}),
+         'fim', 'objetivo', 'area', 'integrantes', 'responsavel', 'custo', 'status', 'attachment')}),
     )
     add_fieldsets = (
         (

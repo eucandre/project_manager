@@ -18,8 +18,9 @@ class ProjetoForms(forms.ModelForm):
     ), widget=forms.Select(attrs={'class': 'form-control col-6'}))
     objetivo = forms.CharField(widget=forms.Textarea(
         attrs={'class': 'content', 'name': 'body', 'rows': '5', 'cols': '3'}))
-    area = forms.ModelChoiceField(
-        queryset=Area.objects.all(), widget=forms.Select(attrs={'class': 'form-control col-6'}))
+    area = forms.ModelMultipleChoiceField(queryset=Area.objects.all(),
+                                          widget=forms.CheckboxSelectMultiple(
+        attrs={'style': 'list-style: none; margin: 0;'}))
     integrantes = forms.ModelMultipleChoiceField(queryset=User.objects.all(),
                                                  widget=forms.CheckboxSelectMultiple(
                                                      attrs={'style': 'list-style: none; margin: 0;'}))

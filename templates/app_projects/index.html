@@ -25,6 +25,7 @@
                         <th>Responsável</th>
                         <th>Status</th>
                         <th>Anexo</th>
+                        <th>Ação</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -37,6 +38,7 @@
                         <th>Responsável</th>
                         <th>Status</th>
                         <th>Anexo</th>
+                        <th>Ação</th>
                     </tr>
                 </tfoot>
                 <tbody>
@@ -49,7 +51,13 @@
                         <td>{{ i.area }}</td>
                         <td>{{ i.responsavel }}</td>
                         <td>{{ i.status }}</td>
-                        <td>{{ i.attachment }}</td>
+                        <td><a href="{{ i.attachment.url }}" target="_blank">{{ i.attachment.name }}</a></td>
+                        <td><a href="/projects/edit_project/{{ i.id }}" class="btn btn-warning btn-icon-split">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </span>
+                                <span class="text">Editar</span>
+                            </a></td>
                     </tr>
                     {% endfor %}
                 </tbody>

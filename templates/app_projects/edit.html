@@ -1,0 +1,53 @@
+{% extends "blank.html" %}
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                {{form.titulo.label_tag}}
+                {{form.titulo}}
+            </div>
+            <div class="col-6">
+                {{form.inicio.label_tag}}
+                {{form.inicio}}
+            </div>
+            <div class="col-6">
+                {{form.fim.label_tag}}
+                {{form.fim}}
+            </div>
+            <div class="col-6">
+                {{form.custo.label_tag}}
+                {{form.custo}}
+            </div>
+            <div class="col-6">
+                {{form.status.label_tag}}
+                {{form.status}}
+            </div>
+            <div class="col-6">
+                {{form.area.label_tag}}
+                {{form.area}}
+            </div>
+            <div class="col-6">
+                {{form.integrantes.label_tag}}
+                {{form.integrantes}}
+            </div>
+            <div class="col-6">
+                {{form.responsavel.label_tag}}
+                {{form.responsavel}}
+            </div>
+            <div class="col-6">
+                {{form.attachment.label_tag}}
+                {{form.attachment}}
+            </div>
+            <div class="col-10">
+                {{form.objetivo.label_tag}}
+                {{form.objetivo}}
+            </div>
+            <div class="col-10 mt-3">
+                <button type="submit" class="btn btn-primary btn-user btn-block">Salvar</button>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock content %}
