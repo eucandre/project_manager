@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
+from django.contrib import messages
 from django.views.generic.detail import DetailView
-
 from .forms import SignUpForm, EditForm
 from .models import User
 
@@ -23,13 +23,18 @@ def edit_profile(request, nr_id):
             user = authenticate(request, email=user.email,
                                 password=raw_password)
             if user is not None:
+                messages.success(
+                    request, 'Salvo com Sucesso!')
                 login(request, user)
             else:
-                print("usuáiro não autenticado!")
+                messages.error(request, "Não salvo")
+                return redirect('users:profile')
             return redirect('users:profile')
+        else:
+            messages.error(request, "Não salvo")
     else:
         form = EditForm(instance=object_user)
-    return render(request, 'edit_profile.html', {'form': form})
+    return render(request, 'edit_profile.html', {'form': form, 'pic': object_user.user_pic_profile.url})
 
 
 def signup(request):

@@ -41,9 +41,19 @@
                             <div class="col-lg-6 d-none d-lg-block bg-register-image"></div>
                             {% else %}
                             <div class="col-lg-6 d-none d-lg-block">
-                                <img src=/media/{{object.user_pic_profile}} alt="" width="500" height="600">
+                                {% if messages %}
+                                {% for message in messages %}
+                                <div class="alert {{ message.tags }} m-2" id="msg" role="alert">
+                                    {{ message }}
+                                </div>
+                                {% endfor %}
+                                {% endif %}
+                                {% block pic_profile %}
+
+                                {% endblock pic_profile %}
                             </div>
-                            {%endif%}
+
+                            {% endif %}
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     {% block content%}
@@ -70,6 +80,13 @@
 
     <!-- Custom scripts for all pages-->
     <script src="/media/js/sb-admin-2.min.js"></script>
+    <script>
+        setTimeout(function () {
+            if ($('#msg').length > 0) {
+                $('#msg').remove();
+            }
+        }, 2000)
+    </script>
 
 </body>
 

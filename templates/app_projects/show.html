@@ -71,9 +71,11 @@
                 </div>
             </div>
         </div>
-        <div class="col-6 mt-4">
+        <div class="col-3 mt-4">
             <div class="alert alert-primary" role="alert">
-                Responsavel Pelo Projeto <b>{{item.responsavel}}</b>
+                Responsável Pelo Projeto <b>{{item.responsavel.name}}</b>
+                <img src="{{item.responsavel.user_pic_profile.url}}" class="img-thumbnail"
+                    alt="{{item.responsavel.name}}">
             </div>
         </div>
         <div class="col-6">

@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 from django.db import models
 from django.utils import timezone
 from app_funcoes.models import Funcao
+from validators import validate_file_size
 
 
 class UserManager(BaseUserManager):
@@ -42,7 +43,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_login = models.DateTimeField(null=True, blank=True)
     date_joined = models.DateTimeField(auto_now_add=True)
     user_pic_profile = models.ImageField(
-        upload_to='profiles', null=True, blank=True)
+        upload_to='profiles', validators=[validate_file_size],
+        null=True, blank=True)
     function_in_the_project = models.ForeignKey(
         Funcao, on_delete=models.CASCADE, blank=True, null=True)
 

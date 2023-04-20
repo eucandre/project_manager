@@ -1,11 +1,66 @@
 {% extends "auth_base_new.html" %}
+{% load forms_labels_tags %}
+{% block pic_profile %}
+<img src="{{ pic }}" class="img-thumbnail" height="400" width="400" /><br />
+{% endblock pic_profile %}
+
+
 {% block content %}
+{% if form.errors %}
+<div class="alert alert-danger">
+    <h4>Oops! Alguns campos possuem erros:</h4>
+    <ul>
+        {% for field in form %}
+        {% if field.errors %}
+        <li><a href="#id_{{ field.name }}">{{ field.label }}</a></li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
 
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{form.as_p}}
+    <div class="container">
+
+        <div class="col-12 mb-3">
+            {{ form.email.label | to_uperstring | to_translation:"E-MAIL"}}
+            {{ form.email }}
+        </div>
+        <hr>
+        <div class="col-12 mb-3">
+            {{ form.user_pic_profile.label | to_uperstring | to_translation:"FOTO DO PERFIL"}}
+            {{ form.user_pic_profile }}
+            {{ form.user_pic_profile.message }}
+        </div>
+        <hr>
+        <div class="col-12 mb-3">
+            {{ form.name.label | to_uperstring | to_translation:"NOME"}}
+            {{ form.name }}
+        </div>
+        <hr>
+        <div class="col-12 mb-3">
+            {{ form.function_in_the_project.label | to_translation:"Função exercida no Projeto" | to_uperstring}}
+            {{ form.function_in_the_project }}
+        </div>
+        <hr>
+        <div class="col-12 mb-3">
+            {{ form.password1.label }}
+            {{ form.password1 }}
+        </div>
+        <hr>
+        <div class="col-12 mb-3">
+            {{ form.password2.label }}
+            {{ form.password2 }}
+        </div>
+        <hr>
+    </div>
     <button type="submit" class="btn btn-primary btn-user btn-block">Editar Conta</button>
 </form>
+<br>
+<a href="{% url 'users:profile' %}" class="text-decoration-none mr-2"><i class="fa fa-home" aria-hidden="true"></i>
+    Perfil</a>
 
-<a href="{% url 'users:logout' %}">Logout</a>
+<a href="{% url 'users:logout' %}" class="text-decoration-none"><i class="fas fa-power-off" aria-hidden="true"></i>
+    Logout</a>
 {% endblock content %}

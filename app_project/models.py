@@ -24,5 +24,8 @@ class Projeto(models.Model):
     def __str__(self):
         return self.titulo
 
+    def get_absolute_url(self):
+        return "/projects/%i/" % (self.pk)
+
     class Meta:
         verbose_name_plural = 'Projetos'

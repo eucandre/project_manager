@@ -1,4 +1,7 @@
 {% extends "auth_base_new.html" %}
+{% block pic_profile %}
+<img src="{{ request.user.user_pic_profile.url }}" class="img-thumbnail" height="400" width="400" /><br />
+{% endblock pic_profile %}
 {% block content %}
 
 <div class="col-12">
@@ -6,7 +9,14 @@
     <small>{{ object.email }}</small><br>
     <small>{{object.function_in_the_project}}</small>
 </div>
-<a href="{% url 'users:logout' %}">Sair</a>
-<a href="{% url 'users:edit_profile' object.id %}">Editar</a>
-<a href="{% url 'users:logout' %}">projetos</a>
+<a href="/projects/index_projects" class="text-decoration-none mr-2"><i class="fa fa-home" aria-hidden="true"></i>
+    Projetos</a>
+
+<a href="/accounts/edit_profile/{{request.user.id}}" class="text-decoration-none mr-2"><i class="fa fa-wrench"
+        aria-hidden="true"></i>
+    Editar</a>
+
+<a href="{% url 'users:logout' %}" class="text-decoration-none"><i class="fas fa-power-off" aria-hidden="true"></i>
+    Logout</a>
+
 {% endblock content %}
