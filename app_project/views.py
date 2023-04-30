@@ -13,7 +13,7 @@ from django.http.response import HttpResponse
 
 @login_required
 def index_to_equipe(request):
-    projects = Projeto.objects.all()  # get(responsavel=request.user.id)
+    projects = Projeto.objects.all()
     paginator = Paginator(projects, 10)
     try:
         page = int(request.GET.get('page', '1'))

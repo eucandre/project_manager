@@ -1,0 +1,60 @@
+{% extends "blank.html" %} {% block content %} <div class="container mb-4">
+    <div class="row">
+
+        <div class="col-12">
+            <h1>{{item.name}}</h1>
+            <small>Secretário:{{item.chef.name}}</small>
+            <hr>
+        </div>
+        <div class="col-6">
+            <h2>Endereço</h2>
+            <small>Logradouro: {{item.address}}</small><br>
+            <small>CEP: {{item.cep}}</small><br>
+        </div>
+        <div class="col-6">
+            <h2>Contato e Endereço Eletrônico</h2>
+            <small>E-mail: {{item.email}}</small><br>
+            <small>Telefone: {{item.phone}}</small><br>
+            <small>Website: {{item.website}}</small><br>
+            <small>Website: {{item.whatsapp}}</small><br>
+        </div>
+        <div class="col-12">
+            <h2>Descrição</h2>
+            <p>{{item.description}}</p>
+        </div>
+        <div class="col-12">
+            <div id="map"></div>
+            <!--TODO: Inicializar o map com as coordenadas do órgão-->
+            <script type="text/javascript">
+                // Initialize and add the map
+                function initMap() {
+                    // The location of Uluru
+                    var latitude = "{{item.latitude}}";
+                    var longitude = "{{item.longitude}}";
+                    var latitude = latitude.replace(',', '.');
+                    var latitude = parseFloat(latitude);
+                    var longitude = longitude.replace(',', '.');
+                    var longitude = parseFloat(longitude);
+
+                    const maceio = { lat: latitude, lng: longitude };
+                    // The map, centered at Uluru
+                    const map = new google.maps.Map(document.getElementById("map"), {
+                        zoom: 12,
+                        center: maceio,
+                    });
+                    // The marker, positioned at Uluru
+                    const marker = new google.maps.Marker({
+                        position: maceio,
+                        map: map,
+                    });
+                }
+
+                window.initMap = initMap;
+            </script>
+            <script
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASdIJIaaAmHII2RdGwFScHafAftRoSloU&callback=initMap&v=weekly"
+                defer></script>
+        </div>
+    </div>
+</div>
+{% endblock content %}>

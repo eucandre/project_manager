@@ -1,0 +1,65 @@
+{% extends "blank.html" %}
+
+{% block content %}
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <a href="/organs/new_organ" class="btn btn-primary btn-icon-split btn-sm">
+            <span class="icon text-white-50">
+                <i class="fas fa-flag"></i>
+            </span>
+            <span class="text">Novo Órgão</span>
+        </a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Órgão</th>
+                        <th>Acrônimo</th>
+                        <th>E-mail</th>
+                        <th>Telefone</th>
+                        <th>Ativo?</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Órgão</th>
+                        <th>Acrônimo</th>
+                        <th>E-mail</th>
+                        <th>Telefone</th>
+                        <th>Ativo?</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    {% for i in organs %}
+                    <tr>
+                        <td><a href="/organs/organ/{{ i.id }}">{{ i.name }}</td>
+                        <td>{{ i.acronym }}</td>
+                        <td>{{ i.email }}</td>
+                        <td>{{ i.phone }}</td>
+                        <td>{{ i.active }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="pagination">
+                <span class="step-links">
+                    {% if organs.has_previous %}
+                    <a href="?page={{ organs.previous_page_number }}">anterior</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Página {{ organs.number }} of {{ organs.paginator.num_pages }}.
+                    </span>
+
+                    {% if organs.has_next %}
+                    <a href="?page={{ organs.next_page_number }}">próxima</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
