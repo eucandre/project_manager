@@ -1,6 +1,6 @@
 from django import forms
 from django.template.defaultfilters import filesizeformat
-from django.utils.translation import ugettext_lazy as _
+#from django.utils.translation import ugettext_lazy as _
 from .models import User
 from django.contrib.auth.forms import UserCreationForm
 

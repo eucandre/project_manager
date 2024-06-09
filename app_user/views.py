@@ -34,21 +34,22 @@ def edit_profile(request, nr_id):
             messages.error(request, "Não salvo")
     else:
         form = EditForm(instance=object_user)
-    return render(request, 'edit_profile.html', {'form': form, 'pic': object_user.user_pic_profile.url})
+    return render(request, 'edit_profile.html', {'form': form, 'pic': object_user.user_pic_profile.url if object_user.user_pic_profile else None})
 
 
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)
+            user.role = 'cli'  # Define a role como 'cli'
+            user.save()
             raw_password = form.cleaned_data.get('password1')
-            user = authenticate(request, email=user.email,
-                                password=raw_password)
+            user = authenticate(request, email=user.email, password=raw_password)
             if user is not None:
                 login(request, user)
             else:
-                print("usuáiro não autenticado!")
+                print("Usuário não autenticado!")
             return redirect('users:profile')
     else:
         form = SignUpForm()

@@ -1,11 +1,10 @@
 {% extends "blank.html" %}
 {% block content %}
-<h1>Projeto</h1>
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h1>{{item.titulo}}</h1>
-            <span class="badge badge-dark">{% for a in item.area.values %}{{a.descricao }}/{% endfor %}</span>
+            <h1>{{item.title}}</h1>
+            <span class="badge badge-dark">{% for a in item.field.values %}{{a.description }}/{% endfor %}</span>
             <hr>
         </div>
         <div class="col-6">
@@ -18,7 +17,7 @@
                 <!-- Card Content - Collapse -->
                 <div class="collapse show" id="collapseCardInicio" style="">
                     <div class="card-body">
-                        {{item.inicio}}
+                        {{item.start}}
                     </div>
                 </div>
             </div>
@@ -33,7 +32,7 @@
                 <!-- Card Content - Collapse -->
                 <div class="collapse show" id="collapseCardFim" style="">
                     <div class="card-body">
-                        {{item.fim}}
+                        {{item.end}}
                     </div>
                 </div>
             </div>
@@ -43,7 +42,7 @@
                 <span class="icon text-white-50">
                     Custo do Projeto</i>
                 </span>
-                <span class="text">R$ {{item.custo}}</span>
+                <span class="text">R$ {{item.cost}}</span>
             </a>
         </div>
         <div class="col-6 mb-4">
@@ -64,7 +63,7 @@
                 <!-- Card Content - Collapse -->
                 <div class="collapse show" id="collapseCardIntegrantes" style="">
                     <div class="card-body">
-                        {% for i in item.integrantes.values %}
+                        {% for i in item.mebmers.values %}
                         {{i.email}}
                         {% endfor %}
                     </div>
@@ -73,9 +72,11 @@
         </div>
         <div class="col-3 mt-4">
             <div class="alert alert-primary" role="alert">
-                Responsável Pelo Projeto <b>{{item.responsavel.name}}</b>
-                <img src="{{item.responsavel.user_pic_profile.url}}" class="img-thumbnail"
-                    alt="{{item.responsavel.name}}">
+                Responsável Pelo Projeto <b>{{item.responsable.name}}</b>
+                {% if item.responsable.user_pic_profile %}
+                <img src="{{item.responsable.user_pic_profile.url}}" class="img-thumbnail"
+                    alt="{{item.responsable.name}}">
+                {% endif %}
             </div>
         </div>
         <div class="col-6">
@@ -93,7 +94,36 @@
                 <!-- Card Content - Collapse -->
                 <div class="collapse show" id="collapseCardObjetivo" style="">
                     <div class="card-body">
-                        {{item.objetivo | safe}}
+                        {{item.gols | safe}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-10 mt-3">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Accordion -->
+                <div class="col-3">
+                    <a href="/tasks/new/{{item.id}}" class="btn btn-primary btn-icon-split btn-sm">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-plus"></i>
+                        </span>
+                        <span class="text">Nova Tarefa</span>
+                    </a>
+                </div>
+                <a href="#collapseCardTask" class="d-block card-header py-3" data-toggle="collapse" role="button"
+                    aria-expanded="true" aria-controls="collapseCardTask">
+                    
+                    <h6 class="m-0 font-weight-bold text-primary">Tarefas</h6>
+                    
+                </a>
+                
+                <!-- Card Content - Collapse -->
+                <div class="collapse show" id="collapseCardTask" style="">
+                    <div class="card-body">
+                        {% for i in tasks %}
+                            {{i.title}}
+                        {% endfor %}
                     </div>
                 </div>
             </div>

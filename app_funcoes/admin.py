@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Funcao
+from .models import Function
 
 
 class FuncaoAdmin(admin.ModelAdmin):
@@ -17,4 +17,4 @@ class FuncaoAdmin(admin.ModelAdmin):
     )
 
 
-admin.site.register(Funcao, FuncaoAdmin)
+admin.site.register(Function, FuncaoAdmin)

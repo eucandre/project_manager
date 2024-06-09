@@ -7,7 +7,7 @@ import requests
 load_dotenv()
 
 
-class Orgao(models.Model):
+class Organ(models.Model):
     name = models.CharField(max_length=255,  null=False, blank=False)
     cep = models.CharField(max_length=255,  null=True, blank=True)
     address = models.CharField(max_length=255,  null=True, blank=True)
@@ -63,7 +63,7 @@ class Orgao(models.Model):
             self.latitude = self.get_latitude()
             self.longitude = self.get_longitude()
             self.cep = self.get_cep()
-        super(Orgao, self).save(*args, **kwargs)
+        super(Organ, self).save(*args, **kwargs)
     
     class Meta:
         ordering = ['name']

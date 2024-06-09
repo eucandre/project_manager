@@ -1,5 +1,5 @@
 from django import forms
-from .models import Orgao
+from .models import Organ
 
 
 class Orgaoform(forms.ModelForm):
@@ -18,6 +18,6 @@ class Orgaoform(forms.ModelForm):
         self.fields['chef'].widget.attrs['class'] = 'form-control'
 
     class Meta:
-        model = Orgao
+        model = Organ
         fields = '__all__'
         exclude = ['id', 'created_at', 'updated_at', 'lattitude', 'longitude']

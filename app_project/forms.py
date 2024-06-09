@@ -1,34 +1,34 @@
 from django import forms
-from .models import Projeto
+from .models import Project
 from app_status.models import Status
-from app_areas.models import Area
+from app_areas.models import Field
 from app_user.models import User
 
 
 class ProjetoForms(forms.ModelForm):
-    titulo = forms.CharField(max_length=255, widget=forms.TextInput(
+    title = forms.CharField(label='Título', max_length=255, widget=forms.TextInput(
         attrs={'class': 'form-control col-10'}))
-    inicio = forms.DateField(widget=forms.DateInput(
+    start = forms.DateField(label='Início', widget=forms.DateInput(
         attrs={'class': 'form-control col-4', 'type': 'date'}))
-    fim = forms.DateField(widget=forms.DateInput(
+    end = forms.DateField(label='Fim',widget=forms.DateInput(
         attrs={'class': 'form-control col-4', 'type': 'date'}))
-    custo = forms.FloatField(widget=forms.NumberInput(
+    cost = forms.CharField(label='Custo', max_length=15, widget=forms.NumberInput(
         attrs={'class': 'form-control col-3'}))
-    status = forms.ModelChoiceField(queryset=Status.objects.all(
+    status = forms.ModelChoiceField(label='Status',queryset=Status.objects.all(
     ), widget=forms.Select(attrs={'class': 'form-control col-6'}))
-    objetivo = forms.CharField(widget=forms.Textarea(
-        attrs={'class': 'content', 'name': 'body', 'rows': '5', 'cols': '3'}))
-    area = forms.ModelMultipleChoiceField(queryset=Area.objects.all(),
+    gols = forms.CharField(label='Objetivo',widget=forms.Textarea(
+        attrs={'class': 'form-contol mt-2 styled-textarea'}))
+    field = forms.ModelMultipleChoiceField(label='Área',queryset=Field.objects.all(),
                                           widget=forms.CheckboxSelectMultiple(
         attrs={'style': 'list-style: none; margin: 0;'}))
-    integrantes = forms.ModelMultipleChoiceField(queryset=User.objects.all(),
+    mebmers = forms.ModelMultipleChoiceField(label='Membros',queryset=User.objects.all(),
                                                  widget=forms.CheckboxSelectMultiple(
                                                      attrs={'style': 'list-style: none; margin: 0;'}))
-    responsavel = forms.ModelChoiceField(
+    responsable = forms.ModelChoiceField(label='Responsável Pelo Projeto',
         queryset=User.objects.all(), widget=forms.Select(attrs={'class': 'form-control col-6'}))
-    # created_at = models.DateField(auto_now=True)
-    # updated_at = models.DateField(auto_now_add=True)
+    attachment = forms.FileField(label='Anexo')
+
 
     class Meta:
-        model = Projeto
+        model = Project
         exclude = ['created_at', 'updated_at']

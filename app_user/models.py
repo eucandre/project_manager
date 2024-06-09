@@ -1,9 +1,11 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
 from django.utils import timezone
-from app_funcoes.models import Funcao
+from app_funcoes.models import Function
 from validators import validate_file_size
 
+
+ROLE = (('adm','adm'),('cli','cli'))
 
 class UserManager(BaseUserManager):
 
@@ -45,11 +47,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     user_pic_profile = models.ImageField(
         upload_to='profiles', validators=[validate_file_size],
         null=True, blank=True)
-    function_in_the_project = models.ForeignKey(
-        Funcao, on_delete=models.CASCADE, blank=True, null=True)
-
+    function_in_the_project = models.ForeignKey(Function, on_delete=models.SET_NULL, null=True, blank=True)
+    role = models.CharField(max_length=255, choices=ROLE, null=True, blank=True)
     USERNAME_FIELD = 'email'
-    EMAIL_FIELD = 'email'
     REQUIRED_FIELDS = []
 
     objects = UserManager()

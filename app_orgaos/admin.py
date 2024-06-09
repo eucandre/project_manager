@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Orgao
+from .models import Organ
 
 
-class OrgaoAdmin(admin.ModelAdmin):
+class OrganAdmin(admin.ModelAdmin):
     list_display = ('name', 'acronym', 'chef', 'address',
                     'phone', 'email', 'website', 'active')
     list_filter = ('name', 'acronym')
@@ -11,4 +11,4 @@ class OrgaoAdmin(admin.ModelAdmin):
     list_per_page = 25
 
 
-admin.site.register(Orgao, OrgaoAdmin)
+admin.site.register(Organ, OrganAdmin)

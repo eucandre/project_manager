@@ -9,5 +9,8 @@ urlpatterns = [
     path('accounts/', include('app_user.urls')),
     path('projects/', include('app_project.urls'), name='projects'),
     path("organs/", include("app_orgaos.urls"), name="ogans"),
+    path("fields/", include("app_areas.urls"), name="fields"),
+    path("status/", include("app_status.urls"), name="status"),
+    path("tasks/", include("app_tarefas.urls"), name="task"),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

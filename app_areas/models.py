@@ -1,11 +1,11 @@
 from django.db import models
 
 
-class Area(models.Model):
-    descricao = models.CharField(max_length=255)
+class Field(models.Model):
+    description = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.descricao
+        return self.description
     
     
     class Meta:

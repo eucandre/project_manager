@@ -1,26 +1,26 @@
 from django.contrib import admin
-from .models import Projeto
+from .models import Project
 
 
 class ProjetoAdmin(admin.ModelAdmin):
     fieldsets = (
-        (None, {'fields': ('titulo', 'inicio',
-         'fim', 'objetivo', 'area', 'integrantes', 'responsavel', 'custo', 'status', 'attachment')}),
+        (None, {'fields': ('title', 'start',
+         'end', 'goal', 'field', 'members', 'responsable', 'cost', 'status', 'attachment')}),
     )
     add_fieldsets = (
         (
             None,
             {
                 'classes': ('wide',),
-                'fields': ('titulo', 'inicio', 'fim')
+                'fields': ('title', 'start', 'end')
             }
         ),
     )
 
-    list_display = ('titulo', 'inicio', 'fim', 'responsavel', 'status')
-    list_filter = ('inicio', 'fim', 'titulo')
-    search_fields = ('inicio', 'fim', 'titulo')
-    ordering = ('inicio',)
+    list_display = ('title', 'start', 'end', 'responsable', 'status')
+    list_filter = ('start', 'end', 'title')
+    search_fields = ('start', 'end', 'title')
+    ordering = ('start',)
 
 
-admin.site.register(Projeto, ProjetoAdmin)
+admin.site.register(Project, ProjetoAdmin)

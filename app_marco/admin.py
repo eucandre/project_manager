@@ -1,27 +1,27 @@
 from django.contrib import admin
-from .models import Marco
+from .models import FollowUp
 
 
-class MarcoAdmin(admin.ModelAdmin):
+class FollowUpAdmin(admin.ModelAdmin):
     fieldsets = (
-        (None, {'fields': ('titulo', 'inicio', 'id_projeto',
-         'fim', 'objetivo', 'integrantes', 'responsavel', 'custo', 'status')}),
+        (None, {'fields': ('title', 'start', 'id_projet',
+         'end', 'goal', 'members', 'responsable', 'cost', 'status')}),
     )
     add_fieldsets = (
         (
             None,
             {
                 'classes': ('wide',),
-                'fields': ('titulo', 'inicio', 'fim')
+                'fields': ('title', 'start', 'end')
             }
         ),
     )
 
-    list_display = ('titulo', 'id_projeto', 'inicio',
-                    'fim', 'responsavel', 'status')
-    list_filter = ('inicio', 'fim', 'titulo')
-    search_fields = ('inicio', 'fim', 'titulo')
-    ordering = ('inicio',)
+    list_display = ('title', 'id_projet', 'start',
+                    'end', 'responsable', 'status')
+    list_filter = ('start', 'end', 'title')
+    search_fields = ('start', 'end', 'title')
+    ordering = ('start',)
 
 
-admin.site.register(Marco, MarcoAdmin)
+admin.site.register(FollowUp, FollowUpAdmin)

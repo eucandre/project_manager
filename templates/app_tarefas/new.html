@@ -1,0 +1,105 @@
+{% extends "blank.html" %}
+
+{% block statics %}
+<style>
+    .styled-textarea {
+        width: 100%;
+        height: 150px;
+        padding: 10px;
+        font-size: 16px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        resize: none; /* Desativa a redimensionação */
+        outline: none;
+    }
+
+    .styled-textarea:focus {
+        border-color: #66afe9;
+        box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
+    }
+
+    .styled-textarea::placeholder {
+        color: #aaa;
+        font-style: italic;
+    }
+
+    .error {
+        border-color: red;
+        box-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+    }
+</style>
+
+{% endblock statics %}
+
+{% block content %}
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                {% for field in form %}
+                    <div class="form-group">
+                        
+                        {% if field.errors %}
+                            <div class="error">
+                                {% for error in field.errors %}
+                                    <p>{{ error }}, {{field}}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-12">
+                {{form.title.label_tag}}
+                {{form.title}}
+            </div>
+            <div class="col-6">
+                {{form.start.label_tag}}
+                {{form.start}}
+            </div>
+            <div class="col-6">
+                {{form.end.label_tag}}
+                {{form.end}}
+            </div>
+            <div class="col-6">
+                {{form.cost.label_tag}}
+                {{form.cost}}
+            </div>
+            <div class="col-6">
+                {{form.status.label_tag}}
+                {{form.status}}
+            </div>
+            <div class="col-6">
+                {{form.field.label_tag}}
+                {{form.field}}
+            </div>
+            <div class="col-6">
+                {{form.mebmers.label_tag}}
+                {{form.mebmers}}
+            </div>
+            <div class="col-6">
+                {{form.responsable.label_tag}}
+                {{form.responsable}}
+            </div>
+            <div class="col-6">
+                {{form.attachment.label_tag}}
+                {{form.attachment}}
+            </div>
+            <div class="col-6">
+                {{form.dependencies.label_tag}}
+                {{form.dependencies}}
+            </div>
+            <div class="col-10">
+                {{form.goals.label_tag}}
+                {{form.goals}}
+            </div>
+            <div class="col-10 mt-3">
+                <button type="submit" class="btn btn-primary btn-user btn-block">Salvar</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+{% endblock content %}

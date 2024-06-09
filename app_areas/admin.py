@@ -1,20 +1,20 @@
 from django.contrib import admin
-from .models import Area
+from .models import Field
 
 
-class AreaAdmin(admin.ModelAdmin):
+class FieldAdmin(admin.ModelAdmin):
     fieldsets = (
-        (None, {'fields': ('descricao',)}),
+        (None, {'fields': ('description',)}),
     )
     add_fieldsets = (
         (
             None,
             {
                 'classes': ('wide',),
-                'fields': ('descricao',)
+                'fields': ('description',)
             }
         ),
     )
 
 
-admin.site.register(Area, AreaAdmin)
+admin.site.register(Field, FieldAdmin)

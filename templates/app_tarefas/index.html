@@ -1,0 +1,78 @@
+{% extends "blank.html" %}
+{% block content %}
+
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Tarefa</th>
+                        <th>Projeto</th>
+                        <th>Início</th>
+                        <th>Fim</th>
+                        <th>Custo</th>
+                        <th>Responsável</th>
+                        <th>Status</th>
+                        <th>Anexo</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in items %}
+                    <tr>
+                        <td>{{ i.title }}</td>
+                        <td>{{ i.id_project }}</td>
+                        <td>{{ i.start }}</td>
+                        <td>{{ i.end }}</td>
+                        <td>R$ {{ i.cost }}</td>
+                        <td>{{ i.responsable }}</td>
+                        <td>{{ i.status }}</td>
+                        <td><a href="{{ i.attachment.url }}" target="_blank">{{ i.attachment.name }}</a></td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a href="/projects/edit_project/{{ i.id }}" class="btn btn-warning">
+                                    <span class="icon text-white-50">
+                                    </span>
+                                    <span class="text">Editar</span>
+                                </a>
+                                
+                                <a href="/projects/edit_project/{{ i.id }}" class="btn btn-danger">
+                                    <span class="icon text-white-50">
+                                    </span>
+                                    <span class="text">Deletar</span>
+                                </a>
+
+                                <a href="/projects/show_project/{{ i.id }}" class="btn btn-primary">
+                                    <span class="icon text-white-50">
+                                    </span>
+                                    <span class="text">Detalhes</span>
+                                </a>
+                            </div>    
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="pagination">
+                <span class="step-links">
+                    {% if contacts.has_previous %}
+                    <a href="?page={{ contacts.previous_page_number }}">anterior</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Página {{ contacts.number }} of {{ contacts.paginator.num_pages }}.
+                    </span>
+
+                    {% if contacts.has_next %}
+                    <a href="?page={{ contacts.next_page_number }}">próxima</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content%}

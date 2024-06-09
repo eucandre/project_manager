@@ -1,26 +1,26 @@
 from django.contrib import admin
-from .models import Tarefa
+from .models import Task
 
 
-class TarefaAdmin(admin.ModelAdmin):
+class TaskAdmin(admin.ModelAdmin):
     fieldsets = (
-        (None, {'fields': ('titulo', 'inicio',
-         'fim', 'objetivo', 'responsavel', 'id_marco', 'custo', 'status', 'attachment')}),
+        (None, {'fields': ('title', 'start',
+         'end', 'goal', 'responsable', 'id_marco', 'cost', 'status', 'attachment')}),
     )
     add_fieldsets = (
         (
             None,
             {
                 'classes': ('wide',),
-                'fields': ('titulo', 'inicio', 'fim')
+                'fields': ('title', 'start', 'end')
             }
         ),
     )
 
-    list_display = ('titulo', 'id_marco', 'inicio', 'fim', 'responsavel')
-    list_filter = ('inicio', 'fim', 'titulo')
-    search_fields = ('inicio', 'fim', 'titulo')
-    ordering = ('inicio',)
+    list_display = ('title', 'id_marco', 'start', 'end', 'responsable')
+    list_filter = ('start', 'end', 'title')
+    search_fields = ('start', 'end', 'title')
+    ordering = ('start',)
 
 
-admin.site.register(Tarefa, TarefaAdmin)
+admin.site.register(Task, TaskAdmin)

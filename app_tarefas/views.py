@@ -1,3 +1,36 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
+from .forms import FormTask, Task
+from django.core.paginator import Paginator, InvalidPage, EmptyPage
+from app_project.models import Project
 
-# Create your views here.
+
+def index(request):
+    items = Task.objects.all()
+    paginator = Paginator(items, 10)
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+    try:
+        contacts = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        contacts = paginator.page(paginator.num_pages)
+    return render(request, 'app_tarefas/index.html',{'items':contacts})
+
+def new(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    if request.method == 'POST':
+        form = FormTask(request.POST, request.FILES)
+        if form.is_valid():
+            item = form.save(commit=False)
+            item.id_project = project
+            item.save()
+            return redirect('task_index')
+    else:
+        form = FormTask()
+    return render(request, 'app_tarefas/new.html',{'form':form})
+
+def delete(id):
+    item = Task.objects.get(pk = id)
+    item.delete()
+    return redirect('task_index')

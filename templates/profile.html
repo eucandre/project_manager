@@ -1,13 +1,23 @@
 {% extends "auth_base_new.html" %}
 {% block pic_profile %}
-<img src="{{ request.user.user_pic_profile.url }}" class="img-thumbnail" height="400" width="400" /><br />
+{% if request.user.user_pic_profile %}
+    <img src="{{ request.user.user_pic_profile.url }}" class="img-thumbnail" height="400" width="400" /><br />
+    {% else %}
+    Sem imagem
+{% endif %}
 {% endblock pic_profile %}
 {% block content %}
 
 <div class="col-12">
     <h2> {{ object.name }}</h2>
     <small>{{ object.email }}</small><br>
-    <small>{{object.function_in_the_project}}</small>
+    <small>
+        {% if object.role == 'cli' %}
+            Cliente
+            {% elif object.role == 'adm' %}
+                Administrador
+        {% endif %}
+    </small>
 </div>
 <a href="/projects/index_projects" class="text-decoration-none mr-2"><i class="fa fa-home" aria-hidden="true"></i>
     Projetos</a>
