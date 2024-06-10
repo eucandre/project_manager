@@ -20,7 +20,7 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider">
-    {% if request.user.role != 'admin' %}
+    {% if request.user.role == 'admin' %}
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -38,6 +38,18 @@
                 <a class="collapse-item" href="/accoounts/index">Usuários</a>
             </div>
         </div>
+    </li>
+    {% elif request.user.role == 'cli' %}
+    <li class="nav-item">
+        <a class="nav-link" href="/projects/index_projects">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Projetos</span></a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link" href="/tasks/index_by_cli">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Minhas Tarefas</span></a>
     </li>
 
     {% endif %}

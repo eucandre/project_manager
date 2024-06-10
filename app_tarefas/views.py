@@ -17,6 +17,21 @@ def index(request):
         contacts = paginator.page(paginator.num_pages)
     return render(request, 'app_tarefas/index.html',{'items':contacts})
 
+def index_by_cli(request):
+    items = Task.objects.filter(responsable=request.user)
+    paginator = Paginator(items, 10)
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+    try:
+        contacts = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        contacts = paginator.page(paginator.num_pages)
+    return render(request, 'app_tarefas/index.html',{'items':contacts})
+
+
+
 def new(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     if request.method == 'POST':
