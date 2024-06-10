@@ -2,7 +2,7 @@ from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 
-from .views import UserView, signup, edit_profile
+from .views import UserView, signup, edit_profile, index, new
 
 app_name = 'users'
 
@@ -11,5 +11,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(next_page='/accounts/login'), name='logout'),
     path('profile/',  login_required(UserView.as_view()), name='profile'),
     path('edit_profile/<int:nr_id>', edit_profile, name='edit_profile'),
-    path('signup/', signup, name='signup')
+    path('signup/', signup, name='signup'),
+    path('index/', index, name='user_index'),
+    path('new/', new, name='user_new'),
 ]

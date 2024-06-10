@@ -23,4 +23,8 @@ class FormTask(forms.ModelForm):
         # Filtra apenas os usuários com a role "cli"
         self.fields['responsable'].queryset = User.objects.filter(role='cli')
         
-    
+class FormChangeStatus(forms.ModelForm):
+    status = forms.ModelChoiceField(label='Status',queryset=Status.objects.all(), widget=forms.Select(attrs={'class':'form-control'}))
+    class Meta:
+        model = Task
+        fields = ['status']

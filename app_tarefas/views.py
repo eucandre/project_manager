@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import FormTask, Task
+from .forms import FormTask, Task, FormChangeStatus
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from app_project.models import Project
 
@@ -29,6 +29,23 @@ def new(request, project_id):
     else:
         form = FormTask()
     return render(request, 'app_tarefas/new.html',{'form':form})
+
+
+def show(request, id):
+    item = Task.objects.get(pk=id)
+    return render(request, 'app_tarefas/show.html', {'item': item})
+
+def change_status(request, id):
+    item = Task.objects.get(pk = id)
+    if request.method == 'POST':
+        form = FormChangeStatus(request.POST, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect('task_show',id)
+    else:
+        form = FormChangeStatus(instance=item)
+    return render(request, 'app_tarefas/new.html',{'form':form})
+
 
 def delete(id):
     item = Task.objects.get(pk = id)

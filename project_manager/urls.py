@@ -12,5 +12,6 @@ urlpatterns = [
     path("fields/", include("app_areas.urls"), name="fields"),
     path("status/", include("app_status.urls"), name="status"),
     path("tasks/", include("app_tarefas.urls"), name="task"),
+    path("functions/", include("app_funcoes.urls"), name="functions"),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
