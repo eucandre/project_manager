@@ -1,0 +1,138 @@
+============================= test session starts ==============================
+platform linux -- Python 3.10.12, pytest-8.0.1, pluggy-1.4.0
+django: version: 4.2, settings: project_manager.settings (from ini)
+rootdir: /home/carlos/Documentos/www/segov/project_manager
+configfile: pytest.ini
+plugins: django-4.8.0, Faker-24.3.0, cov-5.0.0, anyio-4.3.0
+collected 13 items
+
+app_areas/tests/test_forms.py ..                                         [ 15%]
+app_areas/tests/test_model.py .                                          [ 23%]
+app_areas/tests/test_view.py .                                           [ 30%]
+app_funcoes/tests/test_forms.py ..                                       [ 46%]
+app_funcoes/tests/test_model.py .                                        [ 53%]
+app_funcoes/tests/test_view.py .                                         [ 61%]
+app_orgaos/tests/test_forms.py ..                                        [ 76%]
+app_orgaos/tests/test_model.py .                                         [ 84%]
+app_areas/tests/test_urls.py .                                           [ 92%]
+app_funcoes/tests/test_urls.py .                                         [100%]
+
+=============================== warnings summary ===============================
+../../../../.local/lib/python3.10/site-packages/django/conf/__init__.py:267
+  /home/carlos/.local/lib/python3.10/site-packages/django/conf/__init__.py:267: RemovedInDjango50Warning: The USE_L10N setting is deprecated. Starting with Django 5.0, localized formatting of data will always be enabled. For example Django will display numbers and dates using the format of the current locale.
+    warnings.warn(USE_L10N_DEPRECATED_MSG, RemovedInDjango50Warning)
+
+app_areas/tests/test_view.py::FieldTestCase::test_index_view
+  /home/carlos/Documentos/www/segov/project_manager/app_areas/views.py:33: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'app_areas.models.Field'> QuerySet.
+    paginator = Paginator(items, 10)
+
+app_funcoes/tests/test_view.py::FieldTestCase::test_index_view
+  /home/carlos/Documentos/www/segov/project_manager/app_funcoes/views.py:8: UnorderedObjectListWarning: Pagination may yield inconsistent results with an unordered object_list: <class 'app_funcoes.models.Function'> QuerySet.
+    paginator = Paginator(items, 10)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+
+---------- coverage: platform linux, python 3.10.12-final-0 ----------
+Name                                                Stmts   Miss  Cover   Missing
+---------------------------------------------------------------------------------
+app_areas/__init__.py                                   0      0   100%
+app_areas/admin.py                                      6      0   100%
+app_areas/apps.py                                       3      0   100%
+app_areas/forms.py                                      9      0   100%
+app_areas/migrations/0001_initial.py                    5      0   100%
+app_areas/migrations/__init__.py                        0      0   100%
+app_areas/models.py                                    12      3    75%   10, 17-18
+app_areas/tests.py                                     21     21     0%   1-28
+app_areas/tests/__init__.py                             0      0   100%
+app_areas/tests/test_forms.py                          11      0   100%
+app_areas/tests/test_model.py                           6      0   100%
+app_areas/tests/test_urls.py                            7      0   100%
+app_areas/tests/test_view.py                            7      0   100%
+app_areas/urls.py                                       3      0   100%
+app_areas/views.py                                     58     36    38%   16-22, 25, 29, 36-37, 40-41, 45-52, 55-57, 60-74
+app_funcoes/__init__.py                                 0      0   100%
+app_funcoes/admin.py                                    6      0   100%
+app_funcoes/apps.py                                     3      0   100%
+app_funcoes/forms.py                                    7      0   100%
+app_funcoes/migrations/0001_initial.py                  5      0   100%
+app_funcoes/migrations/__init__.py                      0      0   100%
+app_funcoes/models.py                                   7      1    86%   8
+app_funcoes/tests.py                                   15     15     0%   1-19
+app_funcoes/tests/__init__.py                           0      0   100%
+app_funcoes/tests/test_forms.py                        11      0   100%
+app_funcoes/tests/test_model.py                         6      0   100%
+app_funcoes/tests/test_urls.py                          7      0   100%
+app_funcoes/tests/test_view.py                          7      0   100%
+app_funcoes/urls.py                                     3      0   100%
+app_funcoes/views.py                                   27     14    48%   11-12, 15-16, 21-28, 31-33
+app_project/__init__.py                                 0      0   100%
+app_project/admin.py                                   10      0   100%
+app_project/apps.py                                     5      0   100%
+app_project/forms.py                                   19      0   100%
+app_project/migrations/0001_initial.py                  5      0   100%
+app_project/migrations/0002_initial.py                  7      0   100%
+app_project/migrations/0003_alter_project_cost.py       4      0   100%
+app_project/migrations/__init__.py                      0      0   100%
+app_project/models.py                                  23      2    91%   25, 28
+app_project/task.py                                     4      4     0%   1-6
+app_project/tests.py                                    1      1     0%   1
+app_project/tests/__init__.py                           0      0   100%
+app_project/tests/test_forms.py                         0      0   100%
+app_project/tests/test_model.py                         0      0   100%
+app_project/tests/test_urls.py                          0      0   100%
+app_project/tests/test_view.py                          0      0   100%
+app_project/urls.py                                     5      0   100%
+app_project/views.py                                   47     29    38%   16-27, 32-39, 44-52, 57-59
+app_status/__init__.py                                  0      0   100%
+app_status/admin.py                                     6      0   100%
+app_status/apps.py                                      3      0   100%
+app_status/forms.py                                     7      0   100%
+app_status/migrations/0001_initial.py                   5      0   100%
+app_status/migrations/__init__.py                       0      0   100%
+app_status/models.py                                    7      1    86%   8
+app_status/tests.py                                    15     15     0%   1-20
+app_status/tests/__init__.py                            0      0   100%
+app_status/tests/test_forms.py                          0      0   100%
+app_status/tests/test_model.py                          0      0   100%
+app_status/tests/test_urls.py                           0      0   100%
+app_status/tests/test_view.py                           0      0   100%
+app_status/urls.py                                      3      0   100%
+app_status/views.py                                    27     21    22%   7-18, 21-28, 31-33
+app_tarefas/__init__.py                                 0      0   100%
+app_tarefas/admin.py                                   10      0   100%
+app_tarefas/apps.py                                     3      0   100%
+app_tarefas/forms.py                                   25      2    92%   22-24
+app_tarefas/migrations/0001_initial.py                  6      0   100%
+app_tarefas/migrations/0002_initial.py                  7      0   100%
+app_tarefas/migrations/__init__.py                      0      0   100%
+app_tarefas/models.py                                  24      1    96%   27
+app_tarefas/tests.py                                    1      1     0%   1
+app_tarefas/tests/__init__.py                           0      0   100%
+app_tarefas/tests/test_forms.py                         0      0   100%
+app_tarefas/tests/test_model.py                         0      0   100%
+app_tarefas/tests/test_urls.py                          0      0   100%
+app_tarefas/tests/test_view.py                          0      0   100%
+app_tarefas/urls.py                                     3      0   100%
+app_tarefas/views.py                                   55     45    18%   8-18, 21-31, 36-46, 50-51, 54-62, 66-68
+app_user/__init__.py                                    0      0   100%
+app_user/admin.py                                      15      0   100%
+app_user/apps.py                                        3      0   100%
+app_user/forms.py                                      20      7    65%   17-26
+app_user/migrations/0001_initial.py                     7      0   100%
+app_user/migrations/0002_user_role.py                   4      0   100%
+app_user/migrations/__init__.py                         0      0   100%
+app_user/models.py                                     37     12    68%   13-29, 32, 35-36, 58
+app_user/templatetags/__init__.py                       0      0   100%
+app_user/templatetags/forms_labels_tags.py              8      2    75%   9, 15
+app_user/tests.py                                      34     34     0%   1-44
+app_user/tests/__init__.py                              0      0   100%
+app_user/tests/test_forms.py                            0      0   100%
+app_user/tests/test_model.py                            0      0   100%
+app_user/tests/test_urls.py                             0      0   100%
+app_user/tests/test_view.py                             0      0   100%
+app_user/urls.py                                        6      0   100%
+app_user/views.py                                      60     47    22%   13, 17-37, 40-55, 58-73, 76-77
+---------------------------------------------------------------------------------
+TOTAL                                                 783    314    60%
+
+======================== 13 passed, 3 warnings in 1.67s ========================
